@@ -1,117 +1,97 @@
 .App {
-  background-color: black;
-  color: white;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  justify-content: center;
+  height: 100vh;
 }
 
 .gauges {
   display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+  width: 80%;
 }
 
 .gauge {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #313131;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 0 2rem;
-  position: relative;
 }
 
 .dial {
   position: relative;
-  width: 80%;
-  height: 80%;
-  border: 2px solid #fff;
+  width: 200px;
+  height: 200px;
+  background-color: #eee;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .tick {
   position: absolute;
-  width: 3px;
-  height: 10%;
-  background-color: white;
+  width: 5px;
+  height: 15px;
+  background-color: black;
   transform-origin: bottom center;
-  transform: rotate(0deg);
+  bottom: 0;
 }
 
 .tick:nth-child(1) {
-  transform: rotate(0deg);
+  transform: rotate(-22.5deg);
 }
 
 .tick:nth-child(2) {
-  transform: rotate(45deg);
+  transform: rotate(-45deg);
 }
 
 .tick:nth-child(3) {
-  transform: rotate(90deg);
+  transform: rotate(-67.5deg);
 }
 
 .tick:nth-child(4) {
-  transform: rotate(135deg);
+  transform: rotate(-90deg);
 }
 
 .tick:nth-child(5) {
-  transform: rotate(180deg);
+  transform: rotate(-112.5deg);
 }
 
 .tick:nth-child(6) {
-  transform: rotate(225deg);
+  transform: rotate(-135deg);
 }
 
 .tick:nth-child(7) {
-  transform: rotate(270deg);
+  transform: rotate(-157.5deg);
 }
 
 .tick:nth-child(8) {
-  transform: rotate(315deg);
+  transform: rotate(-180deg);
 }
 
 .tick:nth-child(9) {
-  transform: rotate(360deg);
+  transform: rotate(-202.5deg);
 }
 
 .needle {
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 5px;
-  height: 50%;
+  height: 100px;
   background-color: red;
   transform-origin: bottom center;
-  transform: translate(-50%, -100%) rotate(-90deg);
-  border-radius: 5px 5px 0 0;
+  transition: transform 1s ease;
 }
 
 .label {
-  font-size: 1.2rem;
-  margin-top: 1rem;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .value {
-  font-size: 3rem;
-  margin-top: 1rem;
-}
-
-.gauge:first-child .value {
-  color: #00ffff;
-}
-
-.gauge:last-child .value {
-  color: #ff00ff;
+  font-size: 40px;
+  font-weight: bold;
 }
