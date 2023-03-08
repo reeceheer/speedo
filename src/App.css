@@ -1,38 +1,117 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: black;
+  color: white;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.gauges {
+  display: flex;
+}
+
+.gauge {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #313131;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.dial {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tick {
+  position: absolute;
+  width: 3px;
+  height: 10%;
+  background-color: white;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+}
+
+.tick:nth-child(1) {
+  transform: rotate(0deg);
+}
+
+.tick:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.tick:nth-child(3) {
+  transform: rotate(90deg);
+}
+
+.tick:nth-child(4) {
+  transform: rotate(135deg);
+}
+
+.tick:nth-child(5) {
+  transform: rotate(180deg);
+}
+
+.tick:nth-child(6) {
+  transform: rotate(225deg);
+}
+
+.tick:nth-child(7) {
+  transform: rotate(270deg);
+}
+
+.tick:nth-child(8) {
+  transform: rotate(315deg);
+}
+
+.tick:nth-child(9) {
+  transform: rotate(360deg);
+}
+
+.needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 50%;
+  background-color: red;
+  transform-origin: bottom center;
+  transform: translate(-50%, -100%) rotate(-90deg);
+  border-radius: 5px 5px 0 0;
+}
+
+.label {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.value {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+
+.gauge:first-child .value {
+  color: #00ffff;
+}
+
+.gauge:last-child .value {
+  color: #ff00ff;
 }
