@@ -46,7 +46,8 @@ function App() {
             <div className="tick"></div>
 
             {/* Speedometer needle */}
-            <div className="needle" style={{ transform: `rotate(${(speed / 100) * 180 - 90}deg)` }}></div>
+            <div className="needle"></div>
+            <div className="progress-bar"></div>
           </div>
 
           {/* Speedometer label */}
@@ -72,6 +73,7 @@ function App() {
 
             {/* Tachometer needle */}
             <div className="needle" style={{ transform: `rotate(${(rpm / 8000) * 180 - 90}deg)` }}></div>
+            <div className="progress-bar" style={{ opacity: 1, transform: `rotate(${(Math.min(rpm, 1) / 8000) * 360}deg)` }}></div>
           </div>
 
           {/* Tachometer label */}

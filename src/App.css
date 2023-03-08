@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: black;
 }
 
 .gauges {
@@ -21,77 +22,84 @@
 
 .dial {
   position: relative;
-  width: 200px;
-  height: 200px;
-  background-color: #eee;
-  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  padding-left: 12.5px;
+  padding-top: 12.5px;
+  background-image: url(./images/3a9bd7ef9e6669ffa47845623d7aa1ca.png) ;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.tick {
+.progress-bar {
   position: absolute;
-  width: 5px;
-  height: 15px;
-  background-color: black;
-  transform-origin: bottom center;
-  bottom: 0;
-}
+  width: 300px;
+  height: 300px;
+  background-image: url(./images/RPM_BAR.svg) ;
+  background-repeat: no-repeat;
+  transition: width 1s ease;
 
-.tick:nth-child(1) {
-  transform: rotate(-22.5deg);
-}
 
-.tick:nth-child(2) {
-  transform: rotate(-45deg);
-}
-
-.tick:nth-child(3) {
-  transform: rotate(-67.5deg);
-}
-
-.tick:nth-child(4) {
-  transform: rotate(-90deg);
-}
-
-.tick:nth-child(5) {
-  transform: rotate(-112.5deg);
-}
-
-.tick:nth-child(6) {
-  transform: rotate(-135deg);
-}
-
-.tick:nth-child(7) {
-  transform: rotate(-157.5deg);
-}
-
-.tick:nth-child(8) {
-  transform: rotate(-180deg);
-}
-
-.tick:nth-child(9) {
-  transform: rotate(-202.5deg);
-}
-
-.needle {
-  position: absolute;
-  width: 5px;
-  height: 100px;
-  background-color: red;
-  transform-origin: bottom center;
-  transition: transform 1s ease;
 }
 
 .label {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: rgb(10, 115, 207);
 }
 
 .value {
   font-size: 40px;
   font-weight: bold;
+  color: aqua;
+}
+
+.tick {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background-color: var(--tick-color);
+  left: 97px;
+  bottom: 0;
+  transform-origin: bottom center;
+}
+
+/* Define positions for the tick marks */
+.tick:nth-child(1) {
+  transform: rotate(0deg);
+}
+
+.tick:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.tick:nth-child(3) {
+  transform: rotate(90deg);
+}
+
+.tick:nth-child(4) {
+  transform: rotate(135deg);
+}
+
+.tick:nth-child(5) {
+  transform: rotate(180deg);
+}
+
+.tick:nth-child(6) {
+  transform: rotate(225deg);
+}
+
+.tick:nth-child(7) {
+  transform: rotate(270deg);
+}
+
+.tick:nth-child(8) {
+  transform: rotate(315deg);
+}
+
+.tick:nth-child(9) {
+  transform: rotate(360deg);
 }
