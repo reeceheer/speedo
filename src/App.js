@@ -6,6 +6,9 @@ function App() {
   const [speed, setSpeed] = useState(0);
   const [rpm, setRpm] = useState(0);
 
+    const progressPercentage = speed / 100;
+    const progressRPM = rpm / 100;
+
   // Use the useEffect hook to update the speed and RPM every second
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,7 +50,7 @@ function App() {
 
             {/* Speedometer needle */}
             <div className="needle"></div>
-            <div className="progress-bar"></div>
+            <div className="progress-bar" style={{ transform: `${progressPercentage}%` }}></div>
           </div>
 
           {/* Speedometer label */}
@@ -72,8 +75,10 @@ function App() {
             <div className="tick"></div>
 
             {/* Tachometer needle */}
-            <div className="needle" style={{ transform: `rotate(${(rpm / 8000) * 180 - 90}deg)` }}></div>
-            <div className="progress-bar" style={{ opacity: 1, transform: `rotate(${(Math.min(rpm, 1) / 8000) * 360}deg)` }}></div>
+            <div className="status-bar-container">
+  <div className="status-bar-fill" style={{ width: `${progressRPM}%` }}></div>
+</div>
+
           </div>
 
           {/* Tachometer label */}
