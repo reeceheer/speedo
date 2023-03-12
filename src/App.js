@@ -76,8 +76,8 @@ function App() {
 
             {/* Tachometer needle */}
             <div className="status-bar-container">
-  <div className="status-bar-fill" style={{ width: `${progressRPM}%` }}></div>
-</div>
+              <div className="status-bar-fill" style={{ width: `${progressRPM}%` }}></div>
+            </div>
 
           </div>
 
