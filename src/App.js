@@ -2,18 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // Declare state variables for speed and RPM
+  // Declare state variables for speed, RPM, and time
   const [speed, setSpeed] = useState(0);
   const [rpm, setRpm] = useState(0);
+  const [time, setTime] = useState(new Date());
 
-    const progressPercentage = speed / 100;
-    const progressRPM = rpm / 100;
-
-  // Use the useEffect hook to update the speed and RPM every second
+  // Use the useEffect hook to update the speed, RPM, and time every second
   useEffect(() => {
     const interval = setInterval(() => {
-      // Generate a random speed between 0 and 100 mph
-      const randomSpeed = Math.floor(Math.random() * 100);
+      // Generate a random speed between 0 and 150 mph
+      const randomSpeed = Math.floor(Math.random() * 150);
 
       // Generate a random RPM between 0 and 8000
       const randomRpm = Math.floor(Math.random() * 8000);
@@ -21,6 +19,9 @@ function App() {
       // Update the speed and RPM state variables with the random values
       setSpeed(randomSpeed);
       setRpm(randomRpm);
+
+      // Update the time state variable with the current time
+      setTime(new Date());
     }, 1000);
 
     // Return a function to clear the interval when the component unmounts
@@ -28,10 +29,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {/* Display the title */}
-      <h2>Speedometer and Tachometer</h2>
-
+    <div className="dashboard">
       {/* Display the gauges */}
       <div className="gauges">
         {/* Speedometer */}
@@ -49,8 +47,8 @@ function App() {
             <div className="tick"></div>
 
             {/* Speedometer needle */}
-            <div className="needle"></div>
-            <div className="progress-bar" style={{ transform: `${progressPercentage}%` }}></div>
+            <div className="needle" style={{ transform: `rotate(${(speed / 150) * 180 - 45}deg)` }}></div>
+            <div className="progress-bar" style={{ transform: `scaleX(${speed / 150})` }}></div>
           </div>
 
           {/* Speedometer label */}
@@ -76,9 +74,9 @@ function App() {
 
             {/* Tachometer needle */}
             <div className="status-bar-container">
-              <div className="status-bar-fill" style={{ width: `${progressRPM}%` }}></div>
+              <div className="needle" style={{ transform: `rotate(${(rpm / 8000) * 180 - 90}deg)` }}></div>
+              <div className="progress-bar" style={{ transform: `scaleX(${rpm / 8000})` }}></div>
             </div>
-
           </div>
 
           {/* Tachometer label */}
@@ -88,6 +86,9 @@ function App() {
           <div className="value">{rpm}</div>
         </div>
       </div>
+
+      {/* Display the time */}
+      <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
     </div>
   );
 }
