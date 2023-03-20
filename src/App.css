@@ -55,7 +55,7 @@ body {
   position: relative;
   width: 200px;
   height: 200px;
-  background-image: url(/src/images/Center\ circle.svg);
+  background-image: url(/src/images/Center_circle.svg);
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
