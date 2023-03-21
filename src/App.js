@@ -6,6 +6,22 @@
     const [speed, setSpeed] = useState(0);
     const [rpm, setRpm] = useState(0);
     const [time, setTime] = useState(new Date());
+    const [oil, setOil] = useState([]);
+    /*const APP_ID = "";*/
+    /*const APP_KEY = "";*/
+
+    useEffect(() => {
+      getOil();
+    }, []);
+
+    const getOil = async () => {
+      const response = await fetch(
+        `http://localhost:5000/oil`
+      );
+      const data = await response.json();
+      console.log(data)
+      /*setOil(data.hits);*/
+    };
 
     // Use the useEffect hook to update the speed, RPM, and time every second
     useEffect(() => {
