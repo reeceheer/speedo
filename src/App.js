@@ -74,6 +74,10 @@
             <div className="value">{speed} mph</div>
           </div>
 
+          <h1> {oil.map} </h1>
+
+                  <p className='oil'>Oil temp: {oil}</p>
+
           {/* Tachometer */}
           <div className="gauge">
             <div className='gauge1'></div>
@@ -108,6 +112,10 @@
 
         {/* Display the time */}
         <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+
+
+
+        
       </div>
     );
   };
