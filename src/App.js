@@ -52,7 +52,7 @@
 
     const getSpeed1 = async () => {
       const response = await fetch(
-        `http://localhost:5000/speed`
+        `http://localhost:5001/speed`
       );
       const data = await response.json();
       console.log(data)
@@ -158,7 +158,7 @@
 
             {/* Tachometer label */}
             <div className="label">rpm</div>
-
+            <h1> {rpm1.map} </h1>
             {/* Tachometer value */}
             <div className="value">{rpm1}</div>
           </div>
