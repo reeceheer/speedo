@@ -56,7 +56,7 @@
       );
       const data = await response.json();
       console.log(data)
-      setSpped1(data.hits);
+      setSpeed1(data.hits);
     };
 
     const getRpm1 = async () => {
