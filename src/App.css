@@ -64,6 +64,19 @@ body {
 
 }
 
+.dial1 {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-image: url(/src/images/Center_circle.svg);
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+  margin-left: 37px;
+
+}
+
 */ .tick {
   position: absolute;
   top: 0;
@@ -114,13 +127,14 @@ body {
   position: absolute;
   width: 4px;
   height: 150px;
-  background-color: red;
+  background-color: blue;
   border-radius: 5px;
   transform: rotate(-90deg);
   transform-origin: bottom center;
   transition: transform 0.3s ease-in-out;
-  margin-top: 1x;
   z-index: -1;
+  margin-right: 80px;
+  margin-top: -85px;
 }
 
 .needle1 {

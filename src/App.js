@@ -51,7 +51,7 @@
           {/* Speedometer */}
           <div className="gauge">
             {/* Dial with tick marks */}
-            <div className="dial">
+            <div className="dial1">
               <div className="tick"></div>
               <div className="tick"></div>
               <div className="tick"></div>
@@ -61,6 +61,9 @@
               <div className="tick"></div>
               <div className="tick"></div>
               <div className="tick"></div>
+              
+              
+              
 
               {/* Speedometer needle */}
               <div className="needle" style={{ transform: `rotate(${(speed / 150) * 180 - 45}deg)` }}></div>
