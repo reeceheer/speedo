@@ -80,6 +80,8 @@
         // Update the speed and RPM state variables with the random values
         setSpeed(randomSpeed);
         setRpm(randomRpm);
+        setRpm1(rpm1);
+        setSpeed1(speed1);
 
         // Update the time state variable with the current time
         setTime(new Date());
