@@ -10,8 +10,8 @@
     const [time, setTime] = useState(new Date());
     const [oil, setOil] = useState([]);
     const [leaf, setLeaf] = useState([]);
-    const [speed1, setSpeed1] = useState([]);
-    const [rpm1, setRpm1] = useState([]);
+    const [speed1, setSpeed1] = useState(0);
+    const [rpm1, setRpm1] = useState(0);
     /*const APP_ID = "";*/
     /*const APP_KEY = "";*/
 
@@ -56,7 +56,7 @@
       );
       const data = await response.json();
       console.log(data)
-      /*setSpped1(data.hits);*/
+      setSpped1(data.hits);
     };
 
     const getRpm1 = async () => {
@@ -65,7 +65,7 @@
       );
       const data = await response.json();
       console.log(data)
-      /*setRpm1(data.hits);*/
+      setRpm1(data.hits);
     };
 
     // Use the useEffect hook to update the speed, RPM, and time every second
@@ -119,7 +119,7 @@
 
             {/* Speedometer label */}
             <div className="label">mph</div>
-
+            <h1> {speed1.map} </h1>
             {/* Speedometer value */}
             <div className="value">{speed1}</div>
           </div>
