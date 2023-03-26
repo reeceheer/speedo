@@ -5,13 +5,12 @@
 
   function App() {
     // Declare state variables for speed, RPM, and time
-    const [speed, setSpeed] = useState(0);
-    const [rpm, setRpm] = useState(0);
+
     const [time, setTime] = useState(new Date());
     const [oil, setOil] = useState([]);
     const [leaf, setLeaf] = useState([]);
-    const [speed1, setSpeed1] = useState(0);
-    const [rpm1, setRpm1] = useState(0);
+    const [speed, setSpeed] = useState(0);
+    const [rpm, setRpm] = useState(0);
     /*const APP_ID = "";*/
     /*const APP_KEY = "";*/
 
@@ -24,11 +23,11 @@
     }, []);
 
     useEffect(() => {
-      getSpeed1();
+      getSpeed();
     }, []);
 
     useEffect(() => {
-      getRpm1();
+      getRpm();
     }, []);
 
 
@@ -50,22 +49,23 @@
       /*setLeaf(data.hits);*/
     };
 
-    const getSpeed1 = async () => {
+    const getSpeed = async () => {
       const response = await fetch(
         `http://localhost:5001/speed`
       );
       const data = await response.json();
       console.log(data)
-      setSpeed1(data.hits);
+      setSpeed(speed);
+
     };
 
-    const getRpm1 = async () => {
+    const getRpm = async () => {
       const response = await fetch(
         `https://64208ffe25cb6572104bd468.mockapi.io/speed/number`
       );
       const data = await response.json();
       console.log(data)
-      setRpm1(data.hits);
+      setRpm(rpm);
     };
 
     // Use the useEffect hook to update the speed, RPM, and time every second
@@ -78,10 +78,7 @@
         const randomRpm = Math.floor(Math.random() * 8000);
 
         // Update the speed and RPM state variables with the random values
-        setSpeed(randomSpeed);
-        setRpm(randomRpm);
-        setRpm1(rpm1);
-        setSpeed1(speed1);
+
 
         // Update the time state variable with the current time
         setTime(new Date());
@@ -121,9 +118,9 @@
 
             {/* Speedometer label */}
             <div className="label">mph</div>
-            <h1> {speed1.map} </h1>
+            <h1> {speed.map} </h1>
             {/* Speedometer value */}
-            <div className="value">{speed1}</div>
+            <div className="value">{speed}</div>
           </div>
 
           <h1> {oil.map} </h1>
@@ -160,9 +157,9 @@
 
             {/* Tachometer label */}
             <div className="label">rpm</div>
-            <h1> {rpm1.map} </h1>
+            <h1> {rpm.map} </h1>
             {/* Tachometer value */}
-            <div className="value">{rpm1}</div>
+            <div className="value">{rpm}</div>
           </div>
         </div>
 
