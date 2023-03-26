@@ -61,7 +61,7 @@
 
     const getRpm1 = async () => {
       const response = await fetch(
-        `http://localhost:5000/rpm`
+        `https://64208ffe25cb6572104bd468.mockapi.io/speed/number`
       );
       const data = await response.json();
       console.log(data)
