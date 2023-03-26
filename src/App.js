@@ -5,12 +5,13 @@
 
   function App() {
     // Declare state variables for speed, RPM, and time
-
+    const [speed, setSpeed] = useState(0);
+    const [rpm, setRpm] = useState(0);
     const [time, setTime] = useState(new Date());
     const [oil, setOil] = useState([]);
     const [leaf, setLeaf] = useState([]);
-    const [speed, setSpeed] = useState(0);
-    const [rpm, setRpm] = useState(0);
+    const [rpm1, setRpm1] = useState([null]);
+    const [speed1, setSpeed1] = useState(0);
     /*const APP_ID = "";*/
     /*const APP_KEY = "";*/
 
@@ -23,21 +24,22 @@
     }, []);
 
     useEffect(() => {
-      getSpeed();
+      getSpeed1();
     }, []);
 
+    
     useEffect(() => {
-      getRpm();
+      getRpm1();
     }, []);
 
 
     const getOil = async () => {
       const response = await fetch(
-        `http://localhost:5000/oil`
+        ``
       );
       const data = await response.json();
       console.log(data)
-      /*setOil(data.hits);*/
+      setOil(data.hits);
     };
 
     const getLeaf = async () => {
@@ -49,24 +51,27 @@
       /*setLeaf(data.hits);*/
     };
 
-    const getSpeed = async () => {
+    const getSpeed1 = async () => {
       const response = await fetch(
         `http://localhost:5001/speed`
       );
       const data = await response.json();
       console.log(data)
-      setSpeed(speed);
-
+      setSpeed1(data.hits);
     };
 
-    const getRpm = async () => {
+    const getRpm1 = async () => {
       const response = await fetch(
-        `https://64208ffe25cb6572104bd468.mockapi.io/speed/number`
+        `https://64208ffe25cb6572104bd468.mockapi.io/number`
       );
       const data = await response.json();
       console.log(data)
-      setRpm(rpm);
+      setRpm1(data.rpm1);
     };
+
+
+    
+    
 
     // Use the useEffect hook to update the speed, RPM, and time every second
     useEffect(() => {
@@ -78,7 +83,8 @@
         const randomRpm = Math.floor(Math.random() * 8000);
 
         // Update the speed and RPM state variables with the random values
-
+        setSpeed(randomSpeed);
+        setRpm(randomRpm)
 
         // Update the time state variable with the current time
         setTime(new Date());
@@ -107,8 +113,6 @@
               <div className="tick"></div>
               
               
-              
-
               {/* Speedometer needle */}
               <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
 <div className="progress-bar" style={{ transform: `scaleX(${speed / 150})` }}></div>
@@ -118,9 +122,9 @@
 
             {/* Speedometer label */}
             <div className="label">mph</div>
-            <h1> {speed.map} </h1>
+            <h1> {speed1.map} </h1>
             {/* Speedometer value */}
-            <div className="value">{speed}</div>
+            <div className="value">{speed1}</div>
           </div>
 
           <h1> {oil.map} </h1>
@@ -150,16 +154,16 @@
 
               {/* Tachometer needle */}
               <div className="status-bar-container">
-                <div className="needle1" style={{ transform: `rotate(${(rpm / 8000) * 210 + 330 - 90}deg)` }}></div>
-                <div className="progress-bar" style={{ transform: `scaleX(${rpm / 8000})` }}></div>
+                <div className="needle1" style={{ transform: `rotate(${(rpm1 / 8000) * 210 + 330 - 90}deg)` }}></div>
+                <div className="progress-bar" style={{ transform: `scaleX(${rpm1 / 8000})` }}></div>
               </div>
             </div>
 
             {/* Tachometer label */}
             <div className="label">rpm</div>
-            <h1> {rpm.map} </h1>
+            <h1> {rpm1.map} </h1>
             {/* Tachometer value */}
-            <div className="value">{rpm}</div>
+            <div className="value">{rpm1}</div>
           </div>
         </div>
 
