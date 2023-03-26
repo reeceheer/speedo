@@ -121,7 +121,7 @@
             <div className="label">mph</div>
 
             {/* Speedometer value */}
-            <div className="value">{speed}</div>
+            <div className="value">{speed1}</div>
           </div>
 
           <h1> {oil.map} </h1>
@@ -160,7 +160,7 @@
             <div className="label">rpm</div>
 
             {/* Tachometer value */}
-            <div className="value">{rpm}</div>
+            <div className="value">{rpm1}</div>
           </div>
         </div>
 
