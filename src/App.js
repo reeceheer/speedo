@@ -35,7 +35,7 @@
     console.error('Error fetching random value:', error);
   });
         // Fetch random value from API and update state
-      }, 30000);
+      }, 5000);
     
       return () => clearInterval(intervalId);
     }, []);
@@ -68,7 +68,7 @@
   
         // Update the time state variable with the current time
         setTime(new Date());
-      }, 1000);
+      }, 30000);
   
       // Return a function to clear the interval when the component unmounts
       return () => clearInterval(interval);
