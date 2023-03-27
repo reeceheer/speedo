@@ -3,7 +3,6 @@
   import Gleaf from './images/Gleaf.svg';
   import Rleaf from './images/Rleaf.svg';
 
-  const API_URL = 'http://localhost:5001/value';
 
   function App() {
     // Declare state variables for speed, RPM, and time
@@ -177,7 +176,7 @@
 <p className="oil">{oil !== null ? `${oil}°C` : 'Loading...'}</p>
 
 <div>
-    <img src={leafImage} alt="Leaf" />
+    <img className="leaf-image" src={leafImage} alt="Leaf" />
   </div>
                   
 
@@ -214,12 +213,7 @@
       </div>
 
         {/* Display the time */}
-        <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-        
-
-
-
-        
+        <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false})}</div>
       </div>
     );
   };

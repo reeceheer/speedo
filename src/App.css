@@ -29,7 +29,6 @@ body {
   align-items: center;
   padding: 80px;
   width: 1000px;
-  height: 1000px;
   background-repeat: no-repeat;
   background-image: url(/src/images/Outer1.png);
   color: white;
@@ -46,7 +45,6 @@ body {
 
   padding: 80px;
   width: 1000px;
-  height: 1000px;
   background-repeat: no-repeat;
   background-image: url(/src/images/Outer1.png);
   color: white;
@@ -193,7 +191,7 @@ body {
 .time {
   position: absolute;
   top: 20px;
-  left: 170px;
+  left: 165px;
   font-size: 32px;
   font-weight: bold;
   color: white;
@@ -202,10 +200,13 @@ body {
 
 .oil{
   position: absolute;
-  margin-top: -1170px;
-  margin-left: 355px;
   font-size: 32px;
   font-weight: bold;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: -10px;
+  right: 350px;
   color: white;
   font-family: MersadBold;
 }
@@ -214,8 +215,7 @@ body {
   position: absolute;
   background-image: url(/src/images/Gleaf.svg);
   background-repeat: no-repeat;
-  padding-top: 1250px;
-  padding-left: 70px;
+
 }
 
 .Rleaf{
@@ -224,4 +224,12 @@ body {
   background-repeat: no-repeat;
   padding-top: 1250px;
   padding-left: 70px;
+}
+
+.leaf-image {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 20px;
+  left: 390px;
 }
