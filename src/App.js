@@ -16,26 +16,43 @@
     /*const APP_KEY = "";*/
 
     useEffect(() => {
-      getOil();
+      const interval = setInterval(() => {
+        // Define async functions to fetch data for speed, RPM, and oil
+        const fetchSpeedData = async () => {
+          const response = await fetch("http://localhost:5000/oil");
+          const data = await response.json();
+          setSpeed(data.oil);
+        };
+  
+        const fetchRpmData = async () => {
+          const response = await fetch("http://localhost:5000/oil");
+          const data = await response.json();
+          setRpm(data.oil);
+        };
+  
+        const fetchOilData = async () => {
+          const response = await fetch("http://localhost:5000/oil");
+          const data = await response.json();
+          setOil(data.oil);
+        };
+  
+        fetchSpeedData();
+        fetchRpmData();
+        fetchOilData();
+  
+        // Update the time state variable with the current time
+        setTime(new Date());
+      }, 1000);
+  
+      // Return a function to clear the interval when the component unmounts
+      return () => clearInterval(interval);
     }, []);
-
-    useEffect(() => {
-      getLeaf();
-    }, []);
-
-    useEffect(() => {
-      getSpeed1();
-    }, []);
-
-    
-    useEffect(() => {
-      getRpm1();
-    }, []);
+  
 
 
-    const getOil = async () => {
+   /* const getOil = async () => {
       const response = await fetch(
-        ``
+        `` 
       );
       const data = await response.json();
       console.log(data)
@@ -48,8 +65,8 @@
       );
       const data = await response.json();
       console.log(data)
-      /*setLeaf(data.hits);*/
-    };
+      setLeaf(data.hits);
+    }; 
 
     const getSpeed1 = async () => {
       const response = await fetch(
@@ -67,14 +84,14 @@
       const data = await response.json();
       console.log(data)
       setRpm1(data.rpm1);
-    };
-
+    }; 
+*/
 
     
     
 
     // Use the useEffect hook to update the speed, RPM, and time every second
-    useEffect(() => {
+  /*  useEffect(() => {
       const interval = setInterval(() => {
         // Generate a random speed between 0 and 150 mph
         const randomSpeed = Math.floor(Math.random() * 150);
@@ -93,6 +110,8 @@
       // Return a function to clear the interval when the component unmounts
       return () => clearInterval(interval);
     }, []);
+
+    */
 
     return (
       <div className="dashboard">
@@ -114,23 +133,22 @@
               
               
               {/* Speedometer needle */}
-              <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
-<div className="progress-bar" style={{ transform: `scaleX(${speed / 150})` }}></div>
+              <div className="needle" style={{ transform: `rotate(${(speed1 / 150) * 210 + 330 - 90}deg)` }}></div>
+<div className="progress-bar" style={{ transform: `scaleX(${speed1 / 150})` }}></div>
 
 
             </div>
 
-            {/* Speedometer label */}
-            <div className="label">mph</div>
-            <h1> {speed1.map} </h1>
-            {/* Speedometer value */}
-            <div className="value">{speed1}</div>
-          </div>
+{/* Speedometer label */}
+<div className="label">mph</div>
 
-          <h1> {oil.map} </h1>
+{/* Speedometer value */}
+<div className="value">{speed !== null ? `${speed}` : 'Loading...'}</div>
+</div>
 
-                  <p className='oil'>45C {oil}</p>
-                  <div className='Rleaf'></div>
+{/* Display oil temperature */}
+<p className="oil">{oil !== null ? `${oil}°C` : 'Loading...'}</p>
+<div className='Rleaf'></div>
                   <div className='Gleaf'></div>
                   
                   
@@ -159,13 +177,13 @@
               </div>
             </div>
 
-            {/* Tachometer label */}
-            <div className="label">rpm</div>
-            <h1> {rpm1.map} </h1>
-            {/* Tachometer value */}
-            <div className="value">{rpm1}</div>
-          </div>
+          {/* Tachometer label */}
+          <div className="label">RPM</div>
+
+          {/* Tachometer value */}
+          <div className="value">{rpm !== null ? rpm : 'Loading...'}</div>
         </div>
+      </div>
 
         {/* Display the time */}
         <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
