@@ -19,7 +19,7 @@
     /*const APP_KEY = "";*/
 
     useEffect(() => {
-      console.log('Fetching API data...');
+      console.log('Fetching API data...')
       const intervalId = setInterval(() => {
 
         fetch('http://localhost:5001/value')
@@ -42,42 +42,42 @@
     }, []);
 
 
-    // useEffect(() => {
-    //   const interval = setInterval(() => {
-    //     // Define async functions to fetch data for speed, RPM, and oil
-    //     const fetchSpeedData = async () => {
-    //       const response = await fetch("http://localhost:5000/oil");
-    //       const data = await response.json();
-    //       setSpeed(data.oil);
-    //     };
+    useEffect(() => {
+      const interval = setInterval(() => {
+        // Define async functions to fetch data for speed, RPM, and oil
+        const fetchSpeedData = async () => {
+          const response = await fetch("http://localhost:5000/oil");
+          const data = await response.json();
+          setSpeed(data.oil);
+        };
   
-    //     const fetchRpmData = async () => {
-    //       const response = await fetch("http://localhost:5000/oil");
-    //       const data = await response.json();
-    //       setRpm(data.oil);
-    //     };
+        const fetchRpmData = async () => {
+          const response = await fetch("http://localhost:5000/oil");
+          const data = await response.json();
+          setRpm(data.oil);
+        };
   
-    //     const fetchOilData = async () => {
-    //       const response = await fetch("http://localhost:5000/oil");
-    //       const data = await response.json();
-    //       setOil(data.oil);
-    //     };
+        const fetchOilData = async () => {
+          const response = await fetch("http://localhost:5000/oil");
+          const data = await response.json();
+          setOil(data.oil);
+        };
   
-    //     fetchSpeedData();
-    //     fetchRpmData();
-    //     fetchOilData();
+        fetchSpeedData();
+        fetchRpmData();
+        fetchOilData();
   
-    //     // Update the time state variable with the current time
-    //     setTime(new Date());
-    //   }, 1000);
+        // Update the time state variable with the current time
+        setTime(new Date());
+      }, 1000);
   
-    //   // Return a function to clear the interval when the component unmounts
-    //   return () => clearInterval(interval);
-    // }, []);
+      // Return a function to clear the interval when the component unmounts
+      return () => clearInterval(interval);
+    }, []);
   
 
 
-   /* const getOil = async () => {
+    const getOil = async () => {
       const response = await fetch(
         `` 
       );
@@ -112,7 +112,7 @@
       console.log(data)
       setRpm1(data.rpm1);
     }; 
-*/
+
 
     
     
