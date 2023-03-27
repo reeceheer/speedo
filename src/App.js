@@ -205,7 +205,7 @@
             </div>
 
           {/* Tachometer label */}
-          <div className="label">RPM</div>
+          <div className="label">rpm</div>
 
           {/* Tachometer value */}
           <div className="value">{rpm !== null ? rpm : 'Loading...'}</div>
