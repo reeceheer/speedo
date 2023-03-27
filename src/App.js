@@ -1,19 +1,45 @@
   import React, { useState, useEffect } from 'react';
   import './App.css';
+  import Gleaf from './images/Gleaf.svg';
+  import Rleaf from './images/Rleaf.svg';
 
-
+  const API_URL = 'http://localhost:5001/value';
 
   function App() {
     // Declare state variables for speed, RPM, and time
     const [speed, setSpeed] = useState(0);
     const [rpm, setRpm] = useState(0);
     const [time, setTime] = useState(new Date());
-    const [oil, setOil] = useState([]);
+    const [oil, setOil] = useState([]); //maybe change to null?
     const [leaf, setLeaf] = useState([]);
     const [rpm1, setRpm1] = useState([null]);
     const [speed1, setSpeed1] = useState(0);
+    const [leafImage, setLeafImage] = useState(Gleaf);
     /*const APP_ID = "";*/
     /*const APP_KEY = "";*/
+
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+
+        fetch('http://localhost:5001/value')
+  .then(response => response.json())
+  .then(data => {
+    if (data.value === 1) {
+      console.log(data)
+      setLeafImage(Gleaf);
+    } else if (data.value === 2) {
+      setLeafImage(Rleaf);
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching random value:', error);
+  });
+        // Fetch random value from API and update state
+      }, 30000);
+    
+      return () => clearInterval(intervalId);
+    }, []);
+
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -148,9 +174,10 @@
 
 {/* Display oil temperature */}
 <p className="oil">{oil !== null ? `${oil}°C` : 'Loading...'}</p>
-<div className='Rleaf'></div>
-                  <div className='Gleaf'></div>
-                  
+
+<div>
+    <img src={leafImage} alt="Leaf" />
+  </div>
                   
 
           {/* Tachometer */}
