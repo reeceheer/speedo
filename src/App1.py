@@ -1,8 +1,10 @@
 import time
 from threading import Thread
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 current_value = 1
 
 def generate_values():
