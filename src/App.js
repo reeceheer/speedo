@@ -11,7 +11,7 @@
     const [time, setTime] = useState(new Date());
     const [oil, setOil] = useState([]); //maybe change to null?
     const [leaf, setLeaf] = useState([]);
-    const [rpm1, setRpm1] = useState([null]);
+    const [rpm1, setRpm1] = useState([null]); // maybe change
     const [speed1, setSpeed1] = useState(0);
     const [leafImage, setLeafImage] = useState(Gleaf);
     /*const APP_ID = "";*/
@@ -65,10 +65,13 @@
         fetchSpeedData();
         fetchRpmData();
         fetchOilData();
+        
   
         // Update the time state variable with the current time
         setTime(new Date());
-      }, 30000);
+      }, 1000);
+
+      
   
       // Return a function to clear the interval when the component unmounts
       return () => clearInterval(interval);
@@ -159,8 +162,8 @@
               
               
               {/* Speedometer needle */}
-              <div className="needle" style={{ transform: `rotate(${(speed1 / 150) * 210 + 330 - 90}deg)` }}></div>
-<div className="progress-bar" style={{ transform: `scaleX(${speed1 / 150})` }}></div>
+              <div className="needle" style={{ transform: `rotate(${(oil / 150) * 210 + 330 - 90}deg)` }}></div>
+<div className="progress-bar" style={{ transform: `scaleX(${oil / 150})` }}></div>
 
 
             </div>
@@ -199,8 +202,8 @@
 
               {/* Tachometer needle */}
               <div className="status-bar-container">
-                <div className="needle1" style={{ transform: `rotate(${(rpm1 / 8000) * 210 + 330 - 90}deg)` }}></div>
-                <div className="progress-bar" style={{ transform: `scaleX(${rpm1 / 8000})` }}></div>
+                <div className="needle1" style={{ transform: `rotate(${(oil / 8000) * 210 + 330 - 90}deg)` }}></div>
+                <div className="progress-bar" style={{ transform: `scaleX(${oil / 8000})` }}></div>
               </div>
             </div>
 
