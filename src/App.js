@@ -116,28 +116,28 @@
     
     
 
-    // Use the useEffect hook to update the speed, RPM, and time every second
-  /*  useEffect(() => {
-      const interval = setInterval(() => {
-        // Generate a random speed between 0 and 150 mph
-        const randomSpeed = Math.floor(Math.random() * 150);
+  //   // Use the useEffect hook to update the speed, RPM, and time every second
+  //  useEffect(() => {
+  //     const interval = setInterval(() => {
+  //       // Generate a random speed between 0 and 150 mph
+  //       const randomSpeed = Math.floor(Math.random() * 150);
 
-        // Generate a random RPM between 0 and 8000
-        const randomRpm = Math.floor(Math.random() * 8000);
+  //       // Generate a random RPM between 0 and 8000
+  //       const randomRpm = Math.floor(Math.random() * 8000);
 
-        // Update the speed and RPM state variables with the random values
-        setSpeed(randomSpeed);
-        setRpm(randomRpm)
+  //       // Update the speed and RPM state variables with the random values
+  //       setSpeed(randomSpeed);
+  //       setRpm(randomRpm)
 
-        // Update the time state variable with the current time
-        setTime(new Date());
-      }, 1000);
+  //       // Update the time state variable with the current time
+  //       setTime(new Date());
+  //     }, 1000);
 
-      // Return a function to clear the interval when the component unmounts
-      return () => clearInterval(interval);
-    }, []);
+  //     // Return a function to clear the interval when the component unmounts
+  //     return () => clearInterval(interval);
+  //   }, []);
 
-    */
+    
 
     return (
       <div className="dashboard">

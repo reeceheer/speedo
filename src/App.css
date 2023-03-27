@@ -152,7 +152,8 @@ body {
   position: absolute;
   width: 4px;
   height: 150px;
-  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(9,9,121,1) 0%, rgba(5,108,187,1) 49%, rgba(0,212,255,0.4700854700854701) 10%);  border-radius: 5px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 20%, rgba(206, 1, 1, 0.479) 49%, rgb(22, 18, 255) 100%);  
+  border-radius: 5px;
   transform: rotate(-90deg);
   transform-origin: bottom center;
   transition: transform 0.3s ease-in-out;
@@ -165,7 +166,7 @@ body {
   position: absolute;
   width: 4px;
   height: 150px;
-  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(9,9,121,1) 0%, rgba(5,108,187,1) 49%, rgba(0,212,255,0.4700854700854701) 10%);  border-radius: 5px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 20%, rgba(206, 1, 1, 0.479) 49%, rgb(22, 18, 255) 100%);  
   border-radius: 5px;
   transform: rotate(-90deg);
   transform-origin: bottom center;
