@@ -21,7 +21,7 @@
       const ws = new WebSocket('ws://localhost:5000');
   
       ws.onmessage = (event) => {
-        setRpm(parseInt(event.data));
+        setRpm(Number(event.data));
       };
   
       return () => {
@@ -34,7 +34,7 @@
       const ws = new WebSocket('ws://localhost:5000');
   
       ws.onmessage = (event) => {
-        setValue(parseInt(event.data));
+        setValue(Number(event.data));
       };
   
       return () => {
