@@ -3,9 +3,10 @@ import './App.css';
 import Gleaf from './images/Gleaf.svg';
 import Rleaf from './images/Rleaf.svg';
 
+
 function App() {
   // Declare state variables for speed, RPM, and time
-  const [speed, setSpeed] = useState(0);
+  const [speed, setSpeed] = useState(null);
   const [rpm, setRpm] = useState(null);
   const [time, setTime] = useState(new Date());
   const [oil, setOil] = useState([]); //maybe change to null?
@@ -29,6 +30,7 @@ function App() {
       ws.close();
     };
   }, []);
+
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:5001');
@@ -91,11 +93,11 @@ function App() {
 <div className="label">mph</div>
 
 {/* Speedometer value */}
-<div className="value">{oilValue !== null ? `${speed}` : 'Loading...'}</div>
+<div className="value">{speed !== null ? `${speed}` : 'Loading...'}</div>
 </div>
 
 {/* Display oil temperature */}
-<p className="oil">{oilValue !== null ? `${speed}°C` : 'Loading...'}</p>
+<p className="oil">{speed !== null ? `${speed}°C` : 'Loading...'}</p>
 
 <div>
   <img className="leaf-image" src={leafImage} alt="Leaf" />
