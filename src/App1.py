@@ -1,37 +1,28 @@
-import time
-from threading import Thread
-from flask import Flask, jsonify
-from flask_cors import CORS
+import asyncio
+import random
+import websockets
 
-app = Flask(__name__)
-CORS(app)
 current_value = 1
 
-def generate_values():
+async def value_generator():
     global current_value
     while True:
         current_value = 1
-        time.sleep(30)
+        await asyncio.sleep(1)
         current_value = 2
-        time.sleep(30)
+        await asyncio.sleep(1)
 
-@app.route('/value', methods=['GET'])
-def get_value():
+async def websocket_handler(websocket, path):
     global current_value
-    return jsonify({'value': current_value})
+    while True:
+        await websocket.send(str(current_value))
+        await asyncio.sleep(1)
 
-def run_app():
-    app.run(host='localhost', port=5001)
+async def main():
+    generator_task = asyncio.create_task(value_generator())
+    server = await websockets.serve(websocket_handler, "localhost", 5000)
+    await server.wait_closed()
 
-if __name__ == '__main__':
-    value_thread = Thread(target=generate_values)
-    value_thread.daemon = False
+if __name__ == "__main__":
+    asyncio.run(main())
 
-    app_thread = Thread(target=run_app)
-    app_thread.daemon = False
-
-    value_thread.start()
-    app_thread.start()
-
-    value_thread.join()
-    app_thread.join()

@@ -1,29 +1,26 @@
+import asyncio
 import random
-import requests
-from threading import Thread
-from time import sleep
-from flask import Flask, jsonify
-from flask_cors import CORS
-app = Flask(__name__)
-CORS(app)  # Enable CORS for the Flask app
+import websockets
 
 oil = None
 
-def generate_oil():
+async def oil_generator():
     global oil
     while True:
         oil = random.randint(10, 99)
-        sleep(1)
+        await asyncio.sleep(0)
 
-@app.route('/oil', methods=['GET'])
-def get_oil():
+async def websocket_handler(websocket, path):
     global oil
-    if oil is None:
-        return jsonify({'error': 'Oil data not generated yet'}), 500
-    return jsonify({'oil': oil})
+    while True:
+        if oil is not None:
+            await websocket.send(str(oil))
+        await asyncio.sleep(1)
 
-if __name__ == '__main__':
-    oil_thread = Thread(target=generate_oil)
-    oil_thread.daemon = True
-    oil_thread.start()
-    app.run(host='localhost', port=5000)
+async def main():
+    generator_task = asyncio.create_task(oil_generator())
+    server = await websockets.serve(websocket_handler, "localhost", 5000)
+    await server.wait_closed()
+
+if __name__ == "__main__":
+    asyncio.run(main())

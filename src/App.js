@@ -14,31 +14,82 @@
     const [rpm1, setRpm1] = useState([null]); // maybe change
     const [speed1, setSpeed1] = useState(0);
     const [leafImage, setLeafImage] = useState(Gleaf);
+    const [value, setValue] = useState(0);
+    const [oilValue, setOilValue] = useState(null);
+
+    useEffect(() => {
+      const ws = new WebSocket('ws://localhost:5000');
+  
+      ws.onmessage = (event) => {
+        setOilValue(parseInt(event.data, 10));
+      };
+  
+      return () => {
+        ws.close();
+      };
+    }, []);
     /*const APP_ID = "";*/
     /*const APP_KEY = "";*/
 
-    useEffect(() => {
-      console.log('Fetching API data...')
-      const intervalId = setInterval(() => {
+  //   useEffect(() => {
+  //     console.log('Fetching API data...')
+  //     const intervalId = setInterval(() => {
 
-        fetch('http://localhost:5001/value')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    if (data.value === 1) {
-      setLeafImage(Gleaf);
-    } else if (data.value === 2) {
-      setLeafImage(Rleaf);
-    }
-  })
-  .catch(error => {
-    console.error('Error fetching random value:', error);
-  });
-        // Fetch random value from API and update state
-      }, 5000);
+  //       fetch('http://localhost:5001/value')
+  // .then(response => response.json())
+  // .then(data => {
+  //   console.log(data);
+  //   if (data.value === 1) {
+  //     setLeafImage(Gleaf);
+  //   } else if (data.value === 2) {
+  //     setLeafImage(Rleaf);
+  //   }
+  // })
+  // .catch(error => {
+  //   console.error('Error fetching random value:', error);
+  // });
+  //       // Fetch random value from API and update state
+  //     }, 1000);
     
-      return () => clearInterval(intervalId);
+  //     return () => clearInterval(intervalId);
+  //   }, []);
+
+    /* WebSocket for Leaf value */
+
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:5000');
+
+    ws.onmessage = (event) => {
+      setValue(parseInt(event.data, 10));
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, []);
+
+
+    useEffect(() => {
+      const ws = new WebSocket('ws://localhost:5000');
+  
+      ws.onmessage = (event) => {
+        setValue(parseInt(event.data, 10));
+      };
+  
+      return () => {
+        ws.close();
+      };
     }, []);
+  
+    useEffect(() => {
+      if (value === 1) {
+        setLeafImage(Gleaf);
+      } else if (value === 2) {
+        setLeafImage(Rleaf);
+      }
+    }, [value]);
+  
 
 
     useEffect(() => {
@@ -162,8 +213,8 @@
               
               
               {/* Speedometer needle */}
-              <div className="needle" style={{ transform: `rotate(${(oil / 150) * 210 + 330 - 90}deg)` }}></div>
-<div className="progress-bar" style={{ transform: `scaleX(${oil / 150})` }}></div>
+              <div className="needle" style={{ transform: `rotate(${(oilValue / 150) * 210 + 330 - 90}deg)` }}></div>
+<div className="progress-bar" style={{ transform: `scaleX(${oilValue / 150})` }}></div>
 
 
             </div>
@@ -172,15 +223,20 @@
 <div className="label">mph</div>
 
 {/* Speedometer value */}
-<div className="value">{speed !== null ? `${speed}` : 'Loading...'}</div>
+<div className="value">{oilValue !== null ? `${oilValue}` : 'Loading...'}</div>
 </div>
 
 {/* Display oil temperature */}
-<p className="oil">{oil !== null ? `${oil}°C` : 'Loading...'}</p>
+<p className="oil">{oilValue !== null ? `${oilValue}°C` : 'Loading...'}</p>
 
 <div>
     <img className="leaf-image" src={leafImage} alt="Leaf" />
   </div>
+
+  <div className="App">
+      <img className="leaf-image" src={leafImage} alt="Leaf" />
+    </div>
+
                   
 
           {/* Tachometer */}
@@ -202,8 +258,8 @@
 
               {/* Tachometer needle */}
               <div className="status-bar-container">
-                <div className="needle1" style={{ transform: `rotate(${(oil / 8000) * 210 + 330 - 90}deg)` }}></div>
-                <div className="progress-bar" style={{ transform: `scaleX(${oil / 8000})` }}></div>
+                <div className="needle1" style={{ transform: `rotate(${(oilValue / 8000) * 210 + 330 - 90}deg)` }}></div>
+                <div className="progress-bar" style={{ transform: `scaleX(${oilValue / 8000})` }}></div>
               </div>
             </div>
 
@@ -211,7 +267,7 @@
           <div className="label">rpm</div>
 
           {/* Tachometer value */}
-          <div className="value">{rpm !== null ? rpm : 'Loading...'}</div>
+          <div className="value">{oilValue !== null ? oilValue : 'Loading...'}</div>
         </div>
       </div>
 
