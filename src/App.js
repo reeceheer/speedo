@@ -28,33 +28,6 @@
         ws.close();
       };
     }, []);
-    /*const APP_ID = "";*/
-    /*const APP_KEY = "";*/
-
-  //   useEffect(() => {
-  //     console.log('Fetching API data...')
-  //     const intervalId = setInterval(() => {
-
-  //       fetch('http://localhost:5001/value')
-  // .then(response => response.json())
-  // .then(data => {
-  //   console.log(data);
-  //   if (data.value === 1) {
-  //     setLeafImage(Gleaf);
-  //   } else if (data.value === 2) {
-  //     setLeafImage(Rleaf);
-  //   }
-  // })
-  // .catch(error => {
-  //   console.error('Error fetching random value:', error);
-  // });
-  //       // Fetch random value from API and update state
-  //     }, 1000);
-    
-  //     return () => clearInterval(intervalId);
-  //   }, []);
-
-    /* WebSocket for Leaf value */
 
 
     useEffect(() => {
@@ -79,106 +52,7 @@
   
 
 
-    useEffect(() => {
-      const interval = setInterval(() => {
-        // Define async functions to fetch data for speed, RPM, and oil
-        const fetchSpeedData = async () => {
-          const response = await fetch("http://localhost:5000/oil");
-          const data = await response.json();
-          setSpeed(data.oil);
-        };
   
-        const fetchRpmData = async () => {
-          const response = await fetch("http://localhost:5000/oil");
-          const data = await response.json();
-          setRpm(data.oil);
-        };
-  
-        const fetchOilData = async () => {
-          const response = await fetch("http://localhost:5000/oil");
-          const data = await response.json();
-          setOil(data.oil);
-        };
-  
-        fetchSpeedData();
-        fetchRpmData();
-        fetchOilData();
-        
-  
-        // Update the time state variable with the current time
-        setTime(new Date());
-      }, 1000);
-
-      
-  
-      // Return a function to clear the interval when the component unmounts
-      return () => clearInterval(interval);
-    }, []);
-  
-
-
-    const getOil = async () => {
-      const response = await fetch(
-        `` 
-      );
-      const data = await response.json();
-      console.log(data)
-      setOil(data.hits);
-    };
-
-    const getLeaf = async () => {
-      const response = await fetch(
-        `http://localhost:5004/leaf`
-      );
-      const data = await response.json();
-      console.log(data)
-      setLeaf(data.hits);
-    }; 
-
-    const getSpeed1 = async () => {
-      const response = await fetch(
-        `http://localhost:5001/speed`
-      );
-      const data = await response.json();
-      console.log(data)
-      setSpeed1(data.hits);
-    };
-
-    const getRpm1 = async () => {
-      const response = await fetch(
-        `https://64208ffe25cb6572104bd468.mockapi.io/number`
-      );
-      const data = await response.json();
-      console.log(data)
-      setRpm1(data.rpm1);
-    }; 
-
-
-    
-    
-
-  //   // Use the useEffect hook to update the speed, RPM, and time every second
-  //  useEffect(() => {
-  //     const interval = setInterval(() => {
-  //       // Generate a random speed between 0 and 150 mph
-  //       const randomSpeed = Math.floor(Math.random() * 150);
-
-  //       // Generate a random RPM between 0 and 8000
-  //       const randomRpm = Math.floor(Math.random() * 8000);
-
-  //       // Update the speed and RPM state variables with the random values
-  //       setSpeed(randomSpeed);
-  //       setRpm(randomRpm)
-
-  //       // Update the time state variable with the current time
-  //       setTime(new Date());
-  //     }, 1000);
-
-  //     // Return a function to clear the interval when the component unmounts
-  //     return () => clearInterval(interval);
-  //   }, []);
-
-    
 
     return (
       <div className="dashboard">
