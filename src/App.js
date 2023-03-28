@@ -21,7 +21,7 @@
       const ws = new WebSocket('ws://localhost:5000');
   
       ws.onmessage = (event) => {
-        setOilValue(parseInt(event.data, 10));
+        setOilValue(parseInt(event.data));
       };
   
       return () => {
@@ -57,24 +57,11 @@
     /* WebSocket for Leaf value */
 
 
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:5000');
-
-    ws.onmessage = (event) => {
-      setValue(parseInt(event.data, 10));
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, []);
-
-
     useEffect(() => {
       const ws = new WebSocket('ws://localhost:5000');
   
       ws.onmessage = (event) => {
-        setValue(parseInt(event.data, 10));
+        setValue(parseInt(event.data));
       };
   
       return () => {
