@@ -7,7 +7,7 @@
   function App() {
     // Declare state variables for speed, RPM, and time
     const [speed, setSpeed] = useState(0);
-    const [rpm, setRpm] = useState(0);
+    const [rpm, setRpm] = useState(null);
     const [time, setTime] = useState(new Date());
     const [oil, setOil] = useState([]); //maybe change to null?
     const [leaf, setLeaf] = useState([]);
