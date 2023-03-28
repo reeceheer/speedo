@@ -21,7 +21,7 @@
       const ws = new WebSocket('ws://localhost:5000');
   
       ws.onmessage = (event) => {
-        setOilValue(parseInt(event.data));
+        setRpm(parseInt(event.data));
       };
   
       return () => {
@@ -245,8 +245,8 @@
 
               {/* Tachometer needle */}
               <div className="status-bar-container">
-                <div className="needle1" style={{ transform: `rotate(${(oilValue / 8000) * 210 + 330 - 90}deg)` }}></div>
-                <div className="progress-bar" style={{ transform: `scaleX(${oilValue / 8000})` }}></div>
+                <div className="needle1" style={{ transform: `rotate(${(rpm / 8000) * 210 + 330 - 90}deg)` }}></div>
+                <div className="progress-bar" style={{ transform: `scaleX(${rpm / 8000})` }}></div>
               </div>
             </div>
 
@@ -254,7 +254,7 @@
           <div className="label">rpm</div>
 
           {/* Tachometer value */}
-          <div className="value">{oilValue !== null ? oilValue : 'Loading...'}</div>
+          <div className="value">{rpm !== null ? rpm : 'Loading...'}</div>
         </div>
       </div>
 
