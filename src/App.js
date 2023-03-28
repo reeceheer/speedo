@@ -3,7 +3,6 @@ import './App.css';
 import Gleaf from './images/Gleaf.svg';
 import Rleaf from './images/Rleaf.svg';
 
-
 function App() {
   // Declare state variables for speed, RPM, and time
   const [speed, setSpeed] = useState(0);
@@ -14,8 +13,9 @@ function App() {
   const [rpm1, setRpm1] = useState([null]); // maybe change
   const [speed1, setSpeed1] = useState(0);
   const [leafImage, setLeafImage] = useState(Gleaf);
-  const [value, setValue] = useState(0);
+  const [output, setOutput] = useState(0);
   const [oilValue, setOilValue] = useState(null);
+
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:5000');
@@ -45,10 +45,10 @@ function App() {
 
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:5001');
+    const ws = new WebSocket('ws://localhost:5002');
 
     ws.onmessage = (event) => {
-      setValue(Number(event.data));
+      setOutput(Number(event.data));
     };
 
     return () => {
@@ -57,17 +57,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (value === 1) {
+    if (output === 1) {
       setLeafImage(Gleaf);
-    } else if (value === 2) {
+    } else if (output === 2) {
       setLeafImage(Rleaf);
     }
-  }, [value]);
+  }, [output]);
 
-
-
-
-
+  
   return (
     <div className="dashboard">
       {/* Display the gauges */}
@@ -86,12 +83,8 @@ function App() {
             <div className="tick"></div>
             <div className="tick"></div>
             
-            
             {/* Speedometer needle */}
             <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
-<div className="progress-bar" style={{ transform: `scaleX(${speed / 150})` }}></div>
-
-
           </div>
 
 {/* Speedometer label */}
@@ -112,8 +105,6 @@ function App() {
     <img className="leaf-image" src={leafImage} alt="Leaf" />
   </div>
 
-                
-
         {/* Tachometer */}
         <div className="gauge-rpm">
           <div className='gauge1'></div>
@@ -130,7 +121,6 @@ function App() {
             <div className="tick"></div>
             
             
-
             {/* Tachometer needle */}
             <div className="status-bar-container">
               <div className="needle1" style={{ transform: `rotate(${(rpm / 8000) * 210 + 330 - 90}deg)` }}></div>
