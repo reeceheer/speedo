@@ -1,3 +1,4 @@
+//Import react libary & hooks from libaries, import SVG images for leaf
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Gleaf from './images/Gleaf.svg';
@@ -13,34 +14,35 @@ function App() {
   const [imageNumber, setImageNumber] = useState(1);
 
 
+  // WebSocket connection for receiving RPM values
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:5000');
-  
+    // handle received RPM data
     ws.onmessage = (event) => {
       console.log('Received data:', event.data);
       setRpm(event.data);
     };
-  
+    // close the WebSocket connection when component unmounts
     return () => {
       ws.close();
     };
   }, []);
 
-
+  // WebSocket connection for receiving speed values
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:5001');
-  
+    // handle received speed data
     ws.onmessage = (event) => {
       console.log('Received data:', event.data);
       setSpeed(event.data);
     };
-  
+    // close the WebSocket connection when component unmounts
     return () => {
       ws.close();
     };
   }, []);  
 
-
+  // Update leaf image based on RPM and speed values
   useEffect(() => {
     if (speed <= 20) {
       setImageNumber(rpm > 2000 ? 2 : 1);
@@ -50,7 +52,7 @@ function App() {
       setImageNumber(rpm > 1500 ? 2 : 1);
     }
   }, [rpm, speed]);
-
+  // Update leaf image based on image number state
   useEffect(() => {
     if (imageNumber === 1) {
       setLeafImage(Gleaf);
@@ -59,7 +61,7 @@ function App() {
     }
   }, [imageNumber]);
 
-  
+  // Render the dashboard UI
   return (
     <div className="dashboard">
       {/* Display the gauges */}
@@ -79,8 +81,7 @@ function App() {
             <div className="tick"></div>
             
             {/* Speedometer needle */}
-            <div className="needle" style={{ transform: `rotate(${(speed / 
-150) * 210 + 330 - 90}deg)` }}></div>
+            <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
           </div>
 
 {/* Speedometer label */}
@@ -119,8 +120,7 @@ function App() {
             
             {/* Tachometer needle */}
             <div className="status-bar-container">
-              <div className="needle1" style={{ transform: `rotate(${(rpm 
-/ 8000) * 210 + 330 - 90}deg)` }}></div>
+              <div className="needle1" style={{ transform: `rotate(${(rpm / 8000) * 210 + 330 - 90}deg)` }}></div>
             </div>
           </div>
 
@@ -133,10 +133,13 @@ function App() {
     </div>
 
       {/* Display the time */}
-      <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', 
-minute:'2-digit', hour12: false})}</div>
+      <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false})}</div>
     </div>
   );
 };
 
 export default App;
+
+//End of Code
+
+// Big shoutout to Filip Chmura, Reece Heer & Hawri Kazaz
