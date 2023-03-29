@@ -8,14 +8,9 @@ function App() {
   // Declare state variables for speed, RPM, and time
   const [speed, setSpeed] = useState(null);
   const [rpm, setRpm] = useState(null);
-  const [time, setTime] = useState(new Date());
-  const [oil, setOil] = useState([]); //maybe change to null?
-  const [leaf, setLeaf] = useState([]);
-  const [rpm1, setRpm1] = useState([null]); // maybe change
-  const [speed1, setSpeed1] = useState(0);
+  const [time] = useState(new Date());
   const [leafImage, setLeafImage] = useState(Gleaf);
-  const [output, setOutput] = useState(0);
-  const [oilValue, setOilValue] = useState(null);
+  const [imageNumber, setImageNumber] = useState(1);
 
 
   useEffect(() => {
@@ -47,24 +42,22 @@ function App() {
 
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:5002');
-
-    ws.onmessage = (event) => {
-      setOutput(Number(event.data));
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, []);
+    if (speed <= 20) {
+      setImageNumber(rpm > 2000 ? 2 : 1);
+    } else if (speed > 50) {
+      setImageNumber(rpm > 2000 ? 2 : 1);
+    } else {
+      setImageNumber(rpm > 1500 ? 2 : 1);
+    }
+  }, [rpm, speed]);
 
   useEffect(() => {
-    if (output === 1) {
+    if (imageNumber === 1) {
       setLeafImage(Gleaf);
-    } else if (output === 2) {
+    } else if (imageNumber === 2) {
       setLeafImage(Rleaf);
     }
-  }, [output]);
+  }, [imageNumber]);
 
   
   return (
@@ -86,7 +79,8 @@ function App() {
             <div className="tick"></div>
             
             {/* Speedometer needle */}
-            <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
+            <div className="needle" style={{ transform: `rotate(${(speed / 
+150) * 210 + 330 - 90}deg)` }}></div>
           </div>
 
 {/* Speedometer label */}
@@ -125,7 +119,8 @@ function App() {
             
             {/* Tachometer needle */}
             <div className="status-bar-container">
-              <div className="needle1" style={{ transform: `rotate(${(rpm / 8000) * 210 + 330 - 90}deg)` }}></div>
+              <div className="needle1" style={{ transform: `rotate(${(rpm 
+/ 8000) * 210 + 330 - 90}deg)` }}></div>
             </div>
           </div>
 
@@ -138,7 +133,8 @@ function App() {
     </div>
 
       {/* Display the time */}
-      <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false})}</div>
+      <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', 
+minute:'2-digit', hour12: false})}</div>
     </div>
   );
 };

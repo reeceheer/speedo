@@ -2,20 +2,20 @@ import asyncio
 import random
 import websockets
 
-current_value = 1
+current_output = 1
 
 async def value_generator():
-    global current_value
+    global current_output
     while True:
-        current_value = 1
+        current_output = 1
         await asyncio.sleep(1)
-        current_value = 2
+        current_output = 2
         await asyncio.sleep(1)
 
 async def websocket_handler(websocket, path):
-    global current_value
+    global current_output
     while True:
-        await websocket.send(str(current_value))
+        await websocket.send(str(current_output))
         await asyncio.sleep(1)
 
 async def main():
