@@ -14,12 +14,20 @@ function App() {
   const [time] = useState(new Date());
   const [leafImage, setLeafImage] = useState(Gleaf);
   const [imageNumber, setImageNumber] = useState(1);
-  const [theme, setTheme] = useState("dark")
+  const [theme, setTheme] = useState(() => {
+    const currentHour = new Date().getHours();
+    return currentHour >= 6 && currentHour < 18 ? "light" : "dark";
+  });
 
 
-  // Toggle for light and darkmode
+  // Toggle for light and darkmode based on the time of day
   const toggleTheme = () => {
-    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+    const currentHour = new Date().getHours();
+    if (currentHour >= 6 && currentHour < 18) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
   };
 
   // WebSocket connection for receiving RPM values
@@ -89,7 +97,7 @@ function App() {
             <div className="tick"></div>
             <div className="tick"></div>
 
-            
+          
             {/* Speedometer needle */}
             <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
           </div>
@@ -104,14 +112,14 @@ function App() {
 {/* Display oil temperature */}
 <p className="oil">{speed !== null ? `${speed}°C` : 'Loading...'}</p>
 
-{/* button Toggle to switch from colour theme */}
+{/* button Toggle to switch from colour theme
 <div className='switch'>
     <ReactSwitch onChange={toggleTheme} checked={ theme === "dark" } 
     checkedIcon={false} 
     uncheckedIcon={false}
     offColor={ "#D3D8FF" }
     onColor={ "#3E64F2" }/>
-    </div>
+    </div> */}
 
 <div>
   <img className="leaf-image" src={leafImage} alt="Leaf" />
