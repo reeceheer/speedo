@@ -6,7 +6,14 @@ import Rleaf from './images/Rleaf1.svg';
 import ReactSwitch from "react-switch";
 export const ThemeContext = createContext(null);
 
-
+// Define the getThemeForTime function first
+function getThemeForTime(currentHour, currentMinute) {
+  if ((currentHour === 6 && currentMinute >= 0) || (currentHour >= 7 && currentHour < 18) || (currentHour === 18 && currentMinute === 0)) {
+    return "light";
+  } else {
+    return "dark";
+  }
+}
 function App() {
   // Declare state variables for speed, RPM, and time
   const [speed, setSpeed] = useState(null);
@@ -15,20 +22,35 @@ function App() {
   const [leafImage, setLeafImage] = useState(Gleaf);
   const [imageNumber, setImageNumber] = useState(1);
   const [theme, setTheme] = useState(() => {
-    const currentHour = new Date().getHours();
-    return currentHour >= 6 && currentHour < 18 ? "light" : "dark";
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+    return getThemeForTime(currentHour, currentMinute);
   });
 
 
   // Toggle for light and darkmode based on the time of day
   const toggleTheme = () => {
-    const currentHour = new Date().getHours();
-    if (currentHour >= 6 && currentHour < 18) {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+    const newTheme = getThemeForTime(currentHour, currentMinute);
+    setTheme(newTheme);
+    console.log("Current theme:", newTheme);
+    console.log("ID:", newTheme === "light" ? "light-theme" : "dark-theme");
   };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const newTheme = getThemeForTime(hours, minutes);
+      setTheme(newTheme);
+    }, 10000); // Checks theme every 10 seconds
+    
+    return () => clearInterval(intervalId);
+  }, []);
 
   // WebSocket connection for receiving RPM values
   useEffect(() => {
