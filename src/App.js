@@ -1,8 +1,10 @@
 //Import react libary & hooks from libaries, import SVG images for leaf
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './App.css';
-import Gleaf from './images/Gleaf.svg';
-import Rleaf from './images/Rleaf.svg';
+import Gleaf from './images/Gleaf1.svg';
+import Rleaf from './images/Rleaf1.svg';
+import ReactSwitch from "react-switch";
+export const ThemeContext = createContext(null);
 
 
 function App() {
@@ -12,7 +14,13 @@ function App() {
   const [time] = useState(new Date());
   const [leafImage, setLeafImage] = useState(Gleaf);
   const [imageNumber, setImageNumber] = useState(1);
+  const [theme, setTheme] = useState("dark")
 
+
+  // Toggle for light and darkmode
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
 
   // WebSocket connection for receiving RPM values
   useEffect(() => {
@@ -63,7 +71,8 @@ function App() {
 
   // Render the dashboard UI
   return (
-    <div className="dashboard">
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <div className="dashboard" id={theme}>
       {/* Display the gauges */}
       <div className="gauges">
         {/* Speedometer */}
@@ -79,6 +88,7 @@ function App() {
             <div className="tick"></div>
             <div className="tick"></div>
             <div className="tick"></div>
+
             
             {/* Speedometer needle */}
             <div className="needle" style={{ transform: `rotate(${(speed / 150) * 210 + 330 - 90}deg)` }}></div>
@@ -93,6 +103,15 @@ function App() {
 
 {/* Display oil temperature */}
 <p className="oil">{speed !== null ? `${speed}°C` : 'Loading...'}</p>
+
+{/* button Toggle to switch from colour theme */}
+<div className='switch'>
+    <ReactSwitch onChange={toggleTheme} checked={ theme === "dark" } 
+    checkedIcon={false} 
+    uncheckedIcon={false}
+    offColor={ "#D3D8FF" }
+    onColor={ "#3E64F2" }/>
+    </div>
 
 <div>
   <img className="leaf-image" src={leafImage} alt="Leaf" />
@@ -131,10 +150,12 @@ function App() {
         <div className="value">{rpm !== null ? rpm : 'Loading...'}</div>
       </div>
     </div>
+    
 
       {/* Display the time */}
       <div className="time">{time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false})}</div>
     </div>
+    </ThemeContext.Provider>
   );
 };
 

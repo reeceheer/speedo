@@ -4,10 +4,19 @@
 }
 
 body {
-  background-image: url(/src/images/bg-image.png);
+  background-image: url(/src/images/bg-dark.png);
   background-repeat: no-repeat;
   width: 800px;
   height: 480px;
+}
+
+
+#dark {
+  background-image: url(/src/images/bg-dark.png);
+}
+
+#light {
+  background-image: url(/src/images/bg-light.png);
 }
 
 
@@ -18,7 +27,6 @@ body {
   padding-top: 90px;
   padding-left: 35px;
 }
-
 
 /*.dashboard{
   
@@ -31,27 +39,53 @@ body {
   padding: 80px;
   width: 1000px;
   background-repeat: no-repeat;
-  background-image: url(/src/images/Outer1.png);
+  background-image: url(/src/images/Outer-dark.png);
   color: white;
   padding-top: 40px;
   z-index: 1;
   padding-right: 70px;
-  
+}
+
+#light .gauge-speed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px;
+  width: 1000px;
+  background-repeat: no-repeat;
+  background-image: url(/src/images/Outer-light1.png);
+  color: white;
+  padding-top: 40px;
+  z-index: 1;
+  padding-right: 70px;
+}
+
+#light .gauge-rpm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px;
+  width: 1000px;
+  background-repeat: no-repeat;
+  background-image: url(/src/images/Outer-light1.png);
+  color: white;
+  padding-top: 40px;
+  z-index: 1;
 }
 
 .gauge-rpm {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 80px;
   width: 1000px;
   background-repeat: no-repeat;
-  background-image: url(/src/images/Outer1.png);
+  background-image: url(/src/images/Outer-dark.png);
   color: white;
   padding-top: 40px;
   z-index: 1;
 }
+
 
 .value {
   position: absolute;
@@ -79,27 +113,51 @@ body {
   position: relative;
   width: 200px;
   height: 200px;
-  background-image: url(/src/images/Center_circle.svg);
+  background-image: url(/src/images/Center-dark.svg);
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   margin-top: -12px;
   margin-left: 37px;
-
 }
+
+#light .dial {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-image: url(/src/images/Center-light1.png);
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  margin-top: -12px;
+  margin-left: 37px;
+}
+
 
 .dial1 {
   position: relative;
   width: 200px;
   height: 200px;
-  background-image: url(/src/images/Center_circle.svg);
+  background-image: url(/src/images/Center-dark.svg);
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   margin-top: 75px;
   margin-left: 37px;
-
 }
+
+#light .dial1 {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-image: url(/src/images/Center-light1.png);
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+  margin-left: 37px;
+}
+
 
 */ .tick {
   position: absolute;
@@ -110,6 +168,8 @@ body {
   transform: translate(-50%, -100%);
   background-color: white;
 }
+
+
 
 .tick:nth-child(1) {
   transform: translate(-50%, -95%) rotate(0deg);
@@ -162,11 +222,39 @@ body {
   margin-top: -57px;
 }
 
+#light .needle {
+  position: absolute;
+  width: 4px;
+  height: 120px;
+  background: linear-gradient(260deg, rgba(0, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 20%,  rgba(17, 0, 255, 0.534) 49%, rgba(255, 0, 0, 0) 100%);  
+  border-radius: 5px;
+  transform: rotate(-90deg);
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-in-out;
+  z-index: -1;
+  margin-right: 80px;
+  margin-top: -57px;
+}
+
 .needle1 {
   position: absolute;
   width: 4px;
   height: 120px;
   background: linear-gradient(260deg, rgba(0, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 20%,  rgba(255, 0, 0, 0.534) 49%, rgba(255, 0, 0, 0) 100%);  
+  border-radius: 5px;
+  transform: rotate(-90deg);
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-in-out;
+  margin-top: -60px;
+  margin-left: -40px;
+  z-index: -1;
+}
+
+#light .needle1 {
+  position: absolute;
+  width: 4px;
+  height: 120px;
+  background: linear-gradient(260deg, rgba(0, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 20%,  rgba(17, 0, 255, 0.534) 49%, rgba(255, 0, 0, 0) 100%);  
   border-radius: 5px;
   transform: rotate(-90deg);
   transform-origin: bottom center;
@@ -183,11 +271,27 @@ body {
   font-family: MersadBold;
 }
 
+#light .label {
+  font-size: 16px;
+  padding-top: 160px;
+  z-index: 11;
+  font-family: MersadBold;
+  color: #AEAEAE;
+}
+
 .value {
   font-size: 35px;
   z-index: 11;
   padding-top: 115px;
   font-family: MersadBold;
+}
+
+#light .value {
+  font-size: 35px;
+  z-index: 11;
+  padding-top: 115px;
+  font-family: MersadBold;
+  color: #545454;
 }
 
 .time {
@@ -197,6 +301,16 @@ body {
   font-size: 32px;
   font-weight: bold;
   color: white;
+  font-family: MersadBold;
+}
+
+#light .time {
+  position: absolute;
+  top: 20px;
+  left: 165px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #545454;
   font-family: MersadBold;
 }
 
@@ -210,11 +324,22 @@ body {
   font-family: MersadBold;
 }
 
+#light .oil{
+  position: absolute;
+  top: -11px;
+  left: 565px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #545454;
+  font-family: MersadBold;
+}
+
 .Gleaf{
   position: absolute;
-  background-image: url(/src/images/Gleaf.svg);
+  background-image: url(/src/images/Gleaf-light.svg);
   background-repeat: no-repeat;
 }
+
 
 .Rleaf{
   position: absolute;
@@ -224,6 +349,7 @@ body {
   padding-left: 70px;
 }
 
+
 .leaf-image {
   position: absolute;
   width: 32px;
@@ -231,3 +357,9 @@ body {
   top: 20px;
   left: 390px;
 }
+
+
+.switch {
+margin-top: 290px;
+}
+
