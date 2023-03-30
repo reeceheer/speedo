@@ -8,7 +8,7 @@ export const ThemeContext = createContext(null);
 
 // Define the getThemeForTime function first
 function getThemeForTime(currentHour, currentMinute) {
-  if ((currentHour === 6 && currentMinute >= 0) || (currentHour >= 7 && currentHour < 23) || (currentHour === 23 && currentMinute === 0)) {
+  if ((currentHour === 6 && currentMinute >= 0) || (currentHour >= 7 && currentHour < 18) || (currentHour === 18 && currentMinute === 0)) {
     return "light";
   } else {
     return "dark";
