@@ -53,7 +53,7 @@ body {
   padding: 80px;
   width: 1000px;
   background-repeat: no-repeat;
-  background-image: url(/src/images/Outer-light1.png);
+  background-image: url(/src/images/Outer-light.png);
   color: white;
   padding-top: 40px;
   z-index: 1;
@@ -67,7 +67,7 @@ body {
   padding: 80px;
   width: 1000px;
   background-repeat: no-repeat;
-  background-image: url(/src/images/Outer-light1.png);
+  background-image: url(/src/images/Outer-light.png);
   color: white;
   padding-top: 40px;
   z-index: 1;
@@ -276,7 +276,7 @@ body {
   padding-top: 160px;
   z-index: 11;
   font-family: MersadBold;
-  color: #AEAEAE;
+  color: rgb(126, 120, 120);
 }
 
 .value {
@@ -291,7 +291,7 @@ body {
   z-index: 11;
   padding-top: 115px;
   font-family: MersadBold;
-  color: #545454;
+  color: rgb(31, 31, 31);
 }
 
 .time {
@@ -310,7 +310,7 @@ body {
   left: 165px;
   font-size: 32px;
   font-weight: bold;
-  color: #545454;
+  color: rgb(31, 31, 31);
   font-family: MersadBold;
 }
 
@@ -330,7 +330,7 @@ body {
   left: 565px;
   font-size: 32px;
   font-weight: bold;
-  color: #545454;
+  color: rgb(31, 31, 31);
   font-family: MersadBold;
 }
 
