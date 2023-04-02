@@ -21,6 +21,7 @@ function App() {
   const [speed, setSpeed] = useState(null);
   const [rpm, setRpm] = useState(null);
   const [time] = useState(new Date());
+  const [temp, setTemp] = useState(null);
   const [leafImage, setLeafImage] = useState(Gleaf);
   const [imageNumber, setImageNumber] = useState(1);
   const [theme, setTheme] = useState(() => {
@@ -82,6 +83,20 @@ function App() {
     };
   }, []);  
 
+    // WebSocket connection for receiving temp values
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:5002');
+    // handle received speed data
+    ws.onmessage = (event) => {
+      console.log('Received data:', event.data);
+      setTemp(event.data);
+    };
+    // close the WebSocket connection when component unmounts
+    return () => {
+      ws.close();
+    };
+  }, []);  
+
   // Update leaf image based on RPM and speed values
   useEffect(() => {
     if (speed <= 20) {
@@ -134,7 +149,7 @@ function App() {
 </div>
 
 {/* Display oil temperature */}
-<p className="oil">{speed !== null ? `${speed}°C` : 'Loading...'}</p>
+<p className="oil">{temp !== null ? `${temp}°C` : 'Loading...'}</p>
 
 {/* button Toggle to switch from colour theme
 <div className='switch'>
