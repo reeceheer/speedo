@@ -20,7 +20,7 @@ function App() {
   // Declare state variables for speed, RPM, and time
   const [speed, setSpeed] = useState(null);
   const [rpm, setRpm] = useState(null);
-  const [time] = useState(new Date());
+  const [time, setTime] = useState(new Date());
   const [temp, setTemp] = useState(null);
   const [leafImage, setLeafImage] = useState(Gleaf);
   const [imageNumber, setImageNumber] = useState(1);
@@ -49,8 +49,9 @@ function App() {
       const hours = now.getHours();
       const minutes = now.getMinutes();
       const newTheme = getThemeForTime(hours, minutes);
+      setTime(new Date());
       setTheme(newTheme);
-    }, 10000); // Checks theme every 10 seconds
+    }, 1000); // Checks theme every 1 second
     
     return () => clearInterval(intervalId);
   }, []);
